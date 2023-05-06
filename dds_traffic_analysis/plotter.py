@@ -12,7 +12,7 @@ class Plotter:
         pass
     
     
-    def plot_per_node(self, _dict: Dict[str, Dict[str, List[Packet]]]):
+    def plot_per_node(self, _dict: Dict[str, Dict[str, List[Packet]]], initial_timestamp):
         fig, ax = plt.subplots()
         
         for guid_src, dst in _dict.items():
@@ -25,7 +25,7 @@ class Plotter:
             
             print(packets_per_second)
                 
-            ax.plot(sorted(packets_per_second.keys()), [sum(vals) for vals in packets_per_second.values()], label=f'{guid_src}')
+            ax.plot([x - int(initial_timestamp) for x in sorted(packets_per_second.keys())], [sum(vals) for vals in packets_per_second.values()], label=f'{guid_src}')
 
         ax.set(xlabel='time (s)', ylabel='bits per second')
         ax.grid()

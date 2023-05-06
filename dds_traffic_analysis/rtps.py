@@ -15,7 +15,7 @@ def rtps_filter(packets: Iterable[Packet]):
 
 
 class RtpsPackets:
-    def __init__(self, packets: Iterable[Packet]) -> None:
+    def __init__(self, packets: Iterable[Packet], initial_timestamp: float) -> None:
         self._packets = rtps_filter(packets)
         self._dict: Dict[GuidPrefix, Dict[GuidPrefix, List[Packet]]] = {}
         
@@ -34,7 +34,7 @@ class RtpsPackets:
         
         self._plotter = Plotter()
         # self._plotter.plot(self._dict)
-        self._plotter.plot_per_node(self._dict)
+        self._plotter.plot_per_node(self._dict, initial_timestamp)
                 
                 
         
