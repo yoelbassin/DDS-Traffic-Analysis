@@ -33,7 +33,8 @@ class RtpsPackets:
         print(self._dict)
         
         self._plotter = Plotter()
-        self._plotter.plot(self._dict)
+        # self._plotter.plot(self._dict)
+        self._plotter.plot_per_node(self._dict)
                 
                 
         
